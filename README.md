@@ -1,11 +1,5 @@
 # TicketBoss — Event Ticketing API
 
-Lightweight event ticketing API demonstrating optimistic concurrency control to prevent over-selling. This README includes setup instructions, API documentation, technical decisions, and examples you can use during interviews or demos.
-
----
-
-# TicketBoss — Event Ticketing API
-
 Lightweight event ticketing API demonstrating optimistic concurrency control to prevent over-selling. This README includes setup instructions, API documentation, technical decisions, and examples you can use for development or interviews.
 
 ---
