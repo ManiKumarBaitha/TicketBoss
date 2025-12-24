@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "TicketBoss API",
+    "description": "Event ticketing API with optimistic concurrency control",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Create Reservation (Success)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerId\": \"abc-corp\",\n  \"seats\": 3\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/reservations/",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", ""]
+        }
+      }
+    },
+    {
+      "name": "Create Reservation (Max Seats)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerId\": \"xyz-corp\",\n  \"seats\": 10\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/reservations/",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", ""]
+        }
+      }
+    },
+    {
+      "name": "Create Reservation (Invalid - Too Many Seats)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerId\": \"test-partner\",\n  \"seats\": 15\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/reservations/",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", ""]
+        }
+      }
+    },
+    {
+      "name": "Create Reservation (Invalid - Zero Seats)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerId\": \"test-partner\",\n  \"seats\": 0\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/reservations/",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", ""]
+        }
+      }
+    },
+    {
+      "name": "Create Reservation (Invalid - No Partner ID)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"seats\": 5\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/reservations/",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", ""]
+        }
+      }
+    },
+    {
+      "name": "Get Event Summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reservations/node-meetup-2025",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", "node-meetup-2025"]
+        }
+      }
+    },
+    {
+      "name": "Cancel Reservation",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reservations/{{reservation_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", "{{reservation_id}}"]
+        }
+      }
+    },
+    {
+      "name": "Cancel Reservation (Not Found)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reservations/non-existent-id",
+          "host": ["{{base_url}}"],
+          "path": ["reservations", "non-existent-id"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "reservation_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
